@@ -6,6 +6,7 @@ Assignment 4
 
 package com.conor;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,13 +20,19 @@ public class Main {
 
         while(true) {
             System.out.println("Enter your times around a lake, when done click ENTER");
-            String lake = scanner.nextLine();
+            try {
+                String lake = scanner.nextLine();
 
-            //Keep looping until user does not enter a value
-            if(lake.length() ==0) {
-                break;
+                //Keep looping until user does not enter a value
+                if (lake.length() == 0) {
+                    break;
+                }
+                lakes.add(Double.parseDouble(lake)); //add to array list
             }
-            lakes.add(Double.parseDouble(lake)); //add to array list
+            //Catch exception
+            catch (NumberFormatException ex) {
+                System.out.println(lakes + " is not a number" + ex);
+            }
         }
 
         //Create max/ min variables and initialize to 0
